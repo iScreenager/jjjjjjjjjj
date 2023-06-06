@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="slider">
+    <div class="card-container">
+      <!-- Add your cards here -->
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <img class="card-img-top" src="Images/images.jpg" alt="Card image cap">
+        <div class="card-body text-center">
+          <h3><b>Sattva Park Cubix</b></h3>
+          <p>DEvanahali, Benguular</p>
+          <h5><b>Rs. 43.63 L</b></h5>
+          <div>
+            <button type="button" class="btn btn-danger mt-3">Proceed</button>
+          </div>
+        </div>
+      </div>
+      <!-- Add more cards here -->
+    </div>
+  </div>
+  <div class="controls">
+    <button class="prev btn btn-primary">&lt;</button>
+    <button class="next btn btn-primary">&gt;</button>
+  </div>
+</div>
+
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-container {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card {
+  width: 25rem;
+  margin-right: 20px;
+  background-color: #fff;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.prev,
+.next {
+  font-size: 24px;
+  padding: 10px 20px;
+}
+
+
+
+
+const cardContainer = document.querySelector('.card-container');
+const cards = document.querySelectorAll('.card');
+
+const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
+let cardCount = 0;
+
+// Clone the cards to create the infinite effect
+cardContainer.innerHTML += cardContainer.innerHTML;
+
+// Event listeners for previous and next buttons
+document.querySelector('.prev').addEventListener('click', function() {
+  if (cardCount > 0) {
+    cardCount--;
+    cardContainer.style.transform = `translateX(-${cardWidth * cardCount}px)`;
+  }
+});
+
+document.querySelector('.next').addEventListener('click', function() {
+  if (cardCount < cards.length - 3) {
+    cardCount++;
+    cardContainer.style.transform = `translateX(-${cardWidth * cardCount}px)`;
+  }
+});
+
+
+
+
